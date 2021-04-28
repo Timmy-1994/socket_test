@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pages2</title>
+</head>
+
+<body>
+
+    <input id='msg' type="text" />
+    <button id='btn' >POST_MSG</button>
+</body>
+
+<script>
+    
+    const BC = new BroadcastChannel('test');
+    
+    BC.onmessage = e => {
+        console.log('[ receive from boradcast channel ]:', e.data);
+    };
+
+    document.getElementById('btn').onclick = ()=>{
+        console.log('postMsg')
+        const msg = document.getElementById('msg').value 
+        BC.postMessage(msg)
+    }
+
+</script>
+</html>
